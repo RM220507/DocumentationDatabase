@@ -29,7 +29,7 @@ def sql_connect():
   
     # connect to the PostgreSQL server
     print('Connecting to the PostgreSQL database...')
-    conn = psycopg2.connect(host="<HOSTNAME>", database="documentation", user="postgres", password="<PASSWORD>")
+    conn = psycopg2.connect(host="raspberrypi4", database="documentation", user="postgres", password="xm32BAZRP")
           
     # create a cursor
     cur = conn.cursor()
