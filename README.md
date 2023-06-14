@@ -1,5 +1,11 @@
 # Documentation Database
 
-This is a simple client/server program that allows the user to store and query links to documentation and tutorials for modules/components
+This project was designed as a way to store many links to different tutorials, datasheets and documentation in one simple place.
+The interface provides an easy-to-use and intuitive front-end to a postgreSQL database that runs on a server machine.
 
-Full documentation can be found on this repository's [Notion page](https://rm220507.notion.site/Documentation-Database-3147cd762da34843bf342b1a4cf849bf?pvs=4)
+## Full Project Documentation
+ - (Installation)[#installation]
+
+### Installation
+Hello
+
