@@ -1,11 +1,12 @@
 import tkinter as tk
 from tkinter import ttk
 import psycopg2
+from configparser import SafeConfigParser
 
 root = tk.Tk()
 root.title("Documentation Database Interface")
 
-photo = tk.PhotoImage(file="/home/ryan/Documents/GitHub/DocumentationDatabase/search.png")
+photo = tk.PhotoImage(file="search.png")
 root.iconphoto(False, photo)
 
 frame = ttk.Frame(root, padding=10)
@@ -24,11 +25,16 @@ class Table:
                 self.e.insert(tk.END, data[i][j])
                 self.e.configure(state="readonly")
 
+def get_config():
+    parser = ConfigParser()
+    ## TBC
+
 # Connect to postgreSQL database
 def sql_connect():
   
     # connect to the PostgreSQL server
     print('Connecting to the PostgreSQL database...')
+    get_config()
     conn = psycopg2.connect(host="raspberrypi4", database="documentation", user="postgres", password="<PASSWORD>")
           
     # create a cursor
