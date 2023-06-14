@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import psycopg2
-from configparser import SafeConfigParser
+from configparser import ConfigParser
 
 root = tk.Tk()
 root.title("Documentation Database Interface")
@@ -27,15 +27,17 @@ class Table:
 
 def get_config():
     parser = ConfigParser()
-    ## TBC
+    parser.read("client_conf.ini")
+    
+    return dict(parser.items("postgresql"))
 
 # Connect to postgreSQL database
 def sql_connect():
   
     # connect to the PostgreSQL server
     print('Connecting to the PostgreSQL database...')
-    get_config()
-    conn = psycopg2.connect(host="raspberrypi4", database="documentation", user="postgres", password="<PASSWORD>")
+    conf = get_config()
+    conn = psycopg2.connect(**conf)
           
     # create a cursor
     cur = conn.cursor()
