@@ -5,6 +5,7 @@ The interface provides an easy-to-use and intuitive front-end to a postgreSQL da
 
 Full Project Documentation:
  - [Installation](#installation)
+ - [Usage](#usage)
 
 ## Installation
 
