@@ -20,7 +20,7 @@ class Table:
         ttk.Label(frame, text="Results...").grid(row=1, column=0, columnspan=4)
         for i in range(len(data)):
             for j in range(len(data[i])):          
-                self.e = ttk.Entry(root, width=40)
+                self.e = ttk.Entry(root, width=60)
                 self.e.grid(row=i+2, column=j)
                 self.e.insert(tk.END, data[i][j])
                 self.e.configure(state="readonly")
@@ -60,7 +60,6 @@ def clear_frame():
 def search(query):
     cur.execute(f"SELECT links.name, link, type, languages.name FROM languages, links WHERE languages.langid = links.langid AND links.name LIKE '%{query}%';")
     #cur.execute("SELECT * FROM links")
-    search_screen()
     Table(frame, cur.fetchall())
     
 def new_lang(name):
