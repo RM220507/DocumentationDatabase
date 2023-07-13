@@ -3,6 +3,7 @@ from tkinter import ttk
 import mysql.connector
 import json
 from betteroptionmenu import BetterOptionMenu
+from table import Table
 from pymysql.converters import escape_string
 
 def search(name, advanced_check, type_check, type, lang_check, lang):
@@ -23,7 +24,8 @@ def search(name, advanced_check, type_check, type, lang_check, lang):
     else:
         results = cursor.fetchall()
 
-    print(results)   
+    results_table.delete_data()
+    results_table.add_data(results)  
 
 def add_new_type(name):
     if type_exists(name):
@@ -107,7 +109,7 @@ cursor = db.cursor()
 left_frame = Frame(root, width=200, height=400, bg="grey")
 left_frame.grid(row=0, column=0, padx=10, pady=10)
 
-right_frame = Frame(root, width=650, height=400, bg="grey")
+right_frame = Frame(root, width=650, height=400, bg="grey", relief=RAISED)
 right_frame.grid(row=0, column=1, padx=10, pady=10)
 
 # placeholder options for the BetterOptionsMenu objects until they get refreshed
@@ -189,6 +191,8 @@ Button(add_frame, text="Add Lang", width=10, command=lambda: add_new_lang(add_na
 Button(add_frame, text="Add Type", width=10, command=lambda: add_new_type(add_name.get())).grid(row=2, column=1, padx=4, pady=4)
 
 Button(add_frame, text="Add Link", width=25, command=lambda: add_new_link(add_name.get(), add_link.get(), add_type.get(), add_lang.get())).grid(row=3, column=0, columnspan=2, padx=4, pady=4)
+
+results_table = Table(right_frame, ["ID", "Link Name", "URL", "Type", "Language"])
 
 refresh_menus()
 root.mainloop()
