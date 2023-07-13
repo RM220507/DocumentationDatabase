@@ -3,6 +3,27 @@ from tkinter import ttk
 import mysql.connector
 import json
 from betteroptionmenu import BetterOptionMenu
+from pymysql.converters import escape_string
+
+def search(name, advanced_check, type_check, type, lang_check, lang):
+    cursor.execute(f"""SELECT LinkID, LinkName, URL, TypeName, LangName 
+                      FROM Links, Types, Languages
+                      WHERE Links.TypeID = Types.TypeID
+                      AND Links.LangID = Languages.LangID
+                      AND LinkName LIKE '%{escape_string(name)}%';""")
+    
+    if advanced_check:
+        results = []
+        for result in cursor.fetchall():
+            if type_check and type != result[3]:
+                continue
+            if lang_check and lang != result[4]:
+                continue
+            results.append(result)
+    else:
+        results = cursor.fetchall()
+
+    print(results)   
 
 def add_new_type(name):
     if type_exists(name):
@@ -126,15 +147,8 @@ search_advanced_lang_menu = BetterOptionMenu(search_frame, search_advanced_lang,
 search_advanced_lang_menu.grid(row=4, column=1, padx=5, pady=5)
 search_advanced_lang_menu.config(width=15)
 
-# checkbox and entry to allow LinkID searching
-search_advanced_id_check = BooleanVar(search_frame)
-Checkbutton(search_frame, text="ID", variable=search_advanced_id_check, bg="pink").grid(row=5, column=0, padx=5, pady=5, sticky="W")
-
-search_advanced_id = Entry(search_frame, width=20)
-search_advanced_id.grid(row=5, column=1, padx=5, pady=5, sticky="E")
-
 # search button
-Button(search_frame, text="Search", width=25).grid(row=6, column=0, columnspan=2, padx=5, pady=5)
+Button(search_frame, text="Search", width=25, command=lambda: search(search_query.get(), search_advanced_check.get(), search_advanced_type_check.get(), search_advanced_type.get(), search_advanced_lang_check.get(), search_advanced_lang.get())).grid(row=5, column=0, columnspan=2, padx=5, pady=5)
 
 # ADD NEW FRAME
 add_frame = Frame(left_frame, width=175, height=200, bg="pink")
