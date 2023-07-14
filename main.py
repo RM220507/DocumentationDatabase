@@ -100,6 +100,8 @@ root.config(bg="skyblue")
 photo = PhotoImage(file="/home/ryan/Documents/GitHub/DocumentationDatabase/search.png")
 root.iconphoto(False, photo)
 
+root.resizable(False, False)
+
 with open("/home/ryan/Documents/GitHub/DocumentationDatabase/connection_data.json") as f:
     connection_data = json.load(f)
 db = mysql.connector.connect(**connection_data)
