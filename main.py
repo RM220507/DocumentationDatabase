@@ -97,8 +97,8 @@ root = Tk()
 root.title("Documentation Database Interface")
 root.config(bg="skyblue")
 
-#photo = PhotoImage(file="search.png")
-#root.iconphoto(False, photo)
+photo = PhotoImage(file="/home/ryan/Documents/GitHub/DocumentationDatabase/search.png")
+root.iconphoto(False, photo)
 
 with open("/home/ryan/Documents/GitHub/DocumentationDatabase/connection_data.json") as f:
     connection_data = json.load(f)
