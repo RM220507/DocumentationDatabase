@@ -1,6 +1,6 @@
 {
-    "host":"<HOSTNAME HERE>",
-    "user":"<USERNAME HERE>",
-    "password":"<PASSWORD HERE>",
+    "host":"raspberrypi4",
+    "user":"documentation_client",
+    "password":"EU9krlZ7ma24SN1a",
     "database":"documentation"
 }

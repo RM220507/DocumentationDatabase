@@ -97,12 +97,12 @@ root = Tk()
 root.title("Documentation Database Interface")
 root.config(bg="skyblue")
 
-photo = PhotoImage(file="/home/ryan/Documents/GitHub/DocumentationDatabase/search.png")
+photo = PhotoImage(file="search.png")
 root.iconphoto(False, photo)
 
 root.resizable(False, False)
 
-with open("/home/ryan/Documents/GitHub/DocumentationDatabase/connection_data.json") as f:
+with open("connection_data.json") as f:
     connection_data = json.load(f)
 db = mysql.connector.connect(**connection_data)
 cursor = db.cursor()
