@@ -91,9 +91,6 @@ ctk.set_appearance_mode("dark")
 root = ctk.CTk()
 root.title("Documentation Database Interface")
 
-photo = PhotoImage(file="search.png")
-root.iconphoto(False, photo)
-
 root.resizable(False, False)
 
 with open("connection_data.json") as f:
